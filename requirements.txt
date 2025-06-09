@@ -1,0 +1,7 @@
+pywin32
+opencv-python
+mediapipe
+numpy
+scipy
+pillow
+tensorflow

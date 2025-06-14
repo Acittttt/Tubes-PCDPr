@@ -44,16 +44,16 @@
   - Swipe Left - Thumb to the left of index finger - Go to the previous slide
 
 # **Project Structure**
- ##### project/
- ##### ├── app.py                  # Streamlit web interface
- ##### ├── gesture_control/        # Core logic for gesture control
- ##### │   ├── __init__.py
- ##### │   ├── powerpoint.py       # PowerPoint initialization and control
- ##### │   ├── webcam.py           # Webcam setup and frame processing
- ##### │   ├── gesture.py          # Hand gesture detection with MediaPipe
- ##### ├── gesture_control.py      # Main script to orchestrate gesture control
- ##### ├── requirements.txt        # Python dependencies
- ##### ├── README.md               # Project documentation
+ #### project/
+ #### ├── app.py                  # Streamlit web interface
+ #### ├── gesture_control/        # Core logic for gesture control
+ #### │   ├── __init__.py
+ #### │   ├── powerpoint.py       # PowerPoint initialization and control
+ #### │   ├── webcam.py           # Webcam setup and frame processing
+ #### │   ├── gesture.py          # Hand gesture detection with MediaPipe
+ #### ├── gesture_control.py      # Main script to orchestrate gesture control
+ #### ├── requirements.txt        # Python dependencies
+ #### ├── README.md               # Project documentation
 
 # **Dependencies**
   - pywin32: For PowerPoint automation on Windows.

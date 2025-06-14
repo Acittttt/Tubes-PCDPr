@@ -236,4 +236,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 
 
-**Created with ❤️ by [Annisa Dian - Rasyid Raafi - Rindi Indriani]
+**Created with ❤️ by [Annisa Dian - Rasyid Raafi - Rindi Indriani]**

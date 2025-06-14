@@ -15,20 +15,20 @@
 
 # **Installation**
 ### 1. Clone the Repository:
- git clone https://github.com/Acittttt/Tubes-PCD.git 
- cd GestureControlIPPT
+  - git clone https://github.com/Acittttt/Tubes-PCD.git 
+  - cd GestureControlIPPT
 
 ### 2. Create a Virtual Environment (optional but recommended):
- python -m venv venv
- source venv/bin/activate  # On Windows: venv\Scripts\activate
+  - python -m venv venv
+  - source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 ### 3. Install Dependencies:
- pip install -r requirements.txt
+  - pip install -r requirements.txt
 
 # **Usage**
 ### 1. Run the Application:
- streamlit run app.py
- This will open a web interface in your default browser (usually at http://localhost:8501).
+  - streamlit run app.py
+  - This will open a web interface in your default browser (usually at http://localhost:8501).
 
 ### 2. Upload a PowerPoint File:
   - Click the file uploader to select a .pptx file.
@@ -39,21 +39,21 @@
   - A webcam window will open, and the PowerPoint slideshow will start.
 
 # **Supported Gestures**
- Pinch - Thumb and index finger close together - Close the presentation
- Swipe Right - Thumb to the right of index finger - Go to the next slide
- Swipe Left - Thumb to the left of index finger - Go to the previous slide
+  - Pinch - Thumb and index finger close together - Close the presentation
+  - Swipe Right - Thumb to the right of index finger - Go to the next slide
+  - Swipe Left - Thumb to the left of index finger - Go to the previous slide
 
 # **Project Structure**
- project/
- ├── app.py                  # Streamlit web interface
- ├── gesture_control/        # Core logic for gesture control
- │   ├── __init__.py
- │   ├── powerpoint.py       # PowerPoint initialization and control
- │   ├── webcam.py           # Webcam setup and frame processing
- │   ├── gesture.py          # Hand gesture detection with MediaPipe
- ├── gesture_control.py      # Main script to orchestrate gesture control
- ├── requirements.txt        # Python dependencies
- ├── README.md               # Project documentation
+ ##### project/
+ ##### ├── app.py                  # Streamlit web interface
+ ##### ├── gesture_control/        # Core logic for gesture control
+ ##### │   ├── __init__.py
+ ##### │   ├── powerpoint.py       # PowerPoint initialization and control
+ ##### │   ├── webcam.py           # Webcam setup and frame processing
+ ##### │   ├── gesture.py          # Hand gesture detection with MediaPipe
+ ##### ├── gesture_control.py      # Main script to orchestrate gesture control
+ ##### ├── requirements.txt        # Python dependencies
+ ##### ├── README.md               # Project documentation
 
 # **Dependencies**
   - pywin32: For PowerPoint automation on Windows.

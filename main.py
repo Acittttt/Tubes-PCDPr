@@ -17,8 +17,11 @@ if hWnd:
 
 # Initialize PowerPoint application
 try:
+    if len(sys.argv) <= 1:
+        print("Error: No PowerPoint file path provided.")
+        exit(1)
+    pptx_path = sys.argv[1]
     powerpoint = win32com.client.Dispatch("PowerPoint.Application")
-    pptx_path = sys.argv[1] if len(sys.argv) > 1 else r'D:\PCD\Tubes\Kelompok3_Ragam_dan_Kesantunan_Bahasa.pptx'
     presentation = powerpoint.Presentations.Open(pptx_path)
     presentation.SlideShowSettings.Run()
     time.sleep(3)  # Tunggu 3 detik untuk memastikan jendela slideshow muncul

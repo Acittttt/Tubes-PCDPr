@@ -1,41 +1,47 @@
-import tkinter as tk
-from tkinter import filedialog, messagebox
+import streamlit as st
 import subprocess
 import sys
+import os
+import tempfile
 
-class GestureControlApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Gesture Control for Presentation")
-        self.pptx_path = ""
+def run_gesture_control(pptx_path):
+    try:
+        result = subprocess.run(
+            [sys.executable, "main.py", pptx_path],
+            check=True,
+            capture_output=True,
+            text=True
+        )
+        st.success("Gesture control started successfully!")
+        st.write("Output from main.py:")
+        st.code(result.stdout)
+    except subprocess.CalledProcessError as e:
+        error_msg = f"Failed to run main.py: {e}\nOutput: {e.stderr}"
+        st.error(error_msg)
 
-        tk.Label(root, text="Select PowerPoint File:").pack(pady=10)
-        tk.Button(root, text="Browse", command=self.browse_file).pack()
-        self.path_label = tk.Label(root, text="No file selected")
-        self.path_label.pack(pady=10)
-        tk.Button(root, text="Start Gesture Control", command=self.start_control).pack(pady=10)
+def main():
+    st.title("Gesture Control for Presentation")
 
-    def browse_file(self):
-        self.pptx_path = filedialog.askopenfilename(filetypes=[("PowerPoint files", "*.pptx")])
-        self.path_label.config(text=self.pptx_path or "No file selected")
+    st.header("Select PowerPoint File")
+    uploaded_file = st.file_uploader("Choose a PowerPoint file", type=["pptx"])
 
-    def start_control(self):
-        if self.pptx_path:
-            try:
-                result = subprocess.run([sys.executable, "main.py", self.pptx_path], 
-                                      check=True, 
-                                      capture_output=True, 
-                                      text=True)
-                print("Output from main.py:", result.stdout)  # Debugging
-            except subprocess.CalledProcessError as e:
-                error_msg = f"Failed to run main.py: {e}\nOutput: {e.stderr}"
-                print(error_msg)  # Debugging
-                messagebox.showerror("Error", error_msg)
-        else:
-            messagebox.showerror("Error", "Please select a PowerPoint file.")
+    if uploaded_file is not None:
+        # Save the uploaded file to a temporary location
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pptx") as tmp_file:
+            tmp_file.write(uploaded_file.read())
+            pptx_path = tmp_file.name
+
+        st.write(f"Selected file: {uploaded_file.name}")
+
+        if st.button("Start Gesture Control"):
+            if pptx_path:
+                run_gesture_control(pptx_path)
+                # Clean up the temporary file after execution
+                os.unlink(pptx_path)
+            else:
+                st.error("No file selected. Please upload a PowerPoint file.")
+    else:
+        st.write("No file selected.")
 
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = GestureControlApp(root)
-    root.geometry("400x200")
-    root.mainloop()
+    main()

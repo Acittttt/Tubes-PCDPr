@@ -17,7 +17,7 @@
 # **Installation**
 ### 1. Clone the Repository:
   - git clone https://github.com/Acittttt/Tubes-PCD.git 
-  - cd GestureControlIPPT
+  - cd gesture_control
 
 ### 2. Create a Virtual Environment (optional but recommended):
   - python -m venv venv
@@ -28,7 +28,7 @@
 
 # **Usage**
 ### 1. Run the Application:
-  - streamlit run app.py
+  - streamlit run app.py OR python -m streamlit run app.py
   - This will open a web interface in your default browser (usually at http://localhost:8501).
 
 ### 2. Upload a PowerPoint File:

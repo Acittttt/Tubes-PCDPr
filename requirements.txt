@@ -1,8 +1,9 @@
 pywin32
-opencv-python
-mediapipe
-numpy
+opencv-python>=4.6.0
+mediapipe>=0.10.0
+numpy>=1.21.0
 scipy
 pillow
-tensorflow
-streamlit
+tensorflow>=2.8.0
+streamlit>=1.20.0
+protobuf>=3.20.0

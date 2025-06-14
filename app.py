@@ -21,15 +21,15 @@ def run_gesture_control(pptx_path):
             timeout=300  # 5 minute timeout
         )
         
-        st.success("Gesture control completed successfully!")
+        st.success("Head gesture control completed successfully!")
         if result.stdout:
             st.write("Output from gesture_control.py:")
             st.code(result.stdout)
-        print("Gesture control process completed.")
+        print("Head gesture control process completed.")
         
     except subprocess.TimeoutExpired:
-        st.warning("Gesture control timed out after 5 minutes")
-        print("Gesture control process timed out")
+        st.warning("Head gesture control timed out after 5 minutes")
+        print("Head gesture control process timed out")
         
     except subprocess.CalledProcessError as e:
         error_msg = f"Failed to run gesture_control.py (Exit code: {e.returncode})"
@@ -106,21 +106,21 @@ def safe_delete_file(file_path, max_attempts=10, delay=2):
     return False
 
 def main():
-    st.title("🎯 Gesture Control for PowerPoint Presentation")
-    st.markdown("Upload your PowerPoint file and control it with hand gestures!")
+    st.title("🧠 Head Gesture Control for PowerPoint Presentation")
+    st.markdown("Upload your PowerPoint file and control it with head movements!")
 
     st.header("📁 Select PowerPoint File")
     uploaded_file = st.file_uploader(
         "Choose a PowerPoint file", 
         type=["pptx", "ppt"],
-        help="Upload your PowerPoint presentation file to control with gestures"
+        help="Upload your PowerPoint presentation file to control with head gestures"
     )
 
     if uploaded_file is not None:
         # Create a more persistent temporary file
         temp_dir = tempfile.gettempdir()
         safe_filename = "".join(c for c in uploaded_file.name if c.isalnum() or c in (' ', '.', '_')).rstrip()
-        pptx_path = os.path.join(temp_dir, f"gesture_control_{int(time.time())}_{safe_filename}")
+        pptx_path = os.path.join(temp_dir, f"head_gesture_control_{int(time.time())}_{safe_filename}")
         
         try:
             # Save the uploaded file
@@ -131,28 +131,58 @@ def main():
             st.info(f"📍 Temporary file location: {pptx_path}")
 
             # Instructions
-            st.header("🎮 How to Use")
-            st.markdown("""
-            **Gesture Controls:**
-            - 👆 **Swipe Right**: Next slide (thumb tip to the right of index tip)
-            - 👈 **Swipe Left**: Previous slide (index tip to the right of thumb tip)  
-            - 🤏 **Pinch**: Close presentation (bring thumb and index finger together)
-            - **ESC Key**: Exit application
+            st.header("🎮 How to Use Head Gesture Control")
             
-            **Instructions:**
-            1. Click "Start Gesture Control" below
-            2. PowerPoint will open automatically
-            3. Use your hand gestures to control the presentation
-            4. Make sure your webcam is working and you have good lighting
+            # Create columns for better layout
+            col1, col2 = st.columns(2)
+            
+            with col1:
+                st.markdown("""
+                **Head Gesture Controls:**
+                - 🔄 **Tilt Head Right**: Next slide
+                - 🔄 **Tilt Head Left**: Previous slide  
+                - 👆👆 **Double Nod**: Close presentation
+                - **ESC Key**: Exit application
+                """)
+            
+            with col2:
+                st.markdown("""
+                **Tips for Best Results:**
+                - 💡 Ensure good lighting on your face
+                - 📹 Keep your face centered in the camera
+                - 🎯 Make clear, deliberate head movements
+                - ⏱️ Wait 1.5 seconds between gestures
+                """)
+
+            st.markdown("""
+            ---
+            **Step-by-Step Instructions:**
+            1. Click "Start Head Gesture Control" below
+            2. PowerPoint will open automatically in slideshow mode
+            3. Position yourself in front of the camera with good lighting
+            4. Use head movements to control the presentation:
+               - **Tilt your head to the RIGHT** → Next slide
+               - **Tilt your head to the LEFT** → Previous slide
+               - **Nod your head twice quickly** → Close presentation
+            5. The application will show your head position and detected gestures
+            """)
+            
+            # Warning box
+            st.warning("""
+            ⚠️ **Important:** 
+            - Make sure your webcam is working properly
+            - Ensure your face is clearly visible and well-lit
+            - Head gestures need to be deliberate (tilt at least 15 degrees)
+            - For double nod: Make two clear up-down head movements within 2 seconds
             """)
 
-            if st.button("🚀 Start Gesture Control", type="primary"):
+            if st.button("🚀 Start Head Gesture Control", type="primary"):
                 if os.path.exists(pptx_path):
-                    with st.spinner("Starting gesture control... Please wait"):
+                    with st.spinner("Starting head gesture control... Please wait"):
                         try:
                             run_gesture_control(pptx_path)
                         except Exception as e:
-                            st.error(f"❌ Error during gesture control: {e}")
+                            st.error(f"❌ Error during head gesture control: {e}")
                         finally:
                             # Clean up the temporary file
                             st.info("🧹 Cleaning up temporary files...")
@@ -169,9 +199,41 @@ def main():
     else:
         st.info("👆 Please upload a PowerPoint file to get started.")
         
+        # Add demo section
+        st.header("🎭 How Head Gestures Work")
+        
+        demo_col1, demo_col2, demo_col3 = st.columns(3)
+        
+        with demo_col1:
+            st.markdown("""
+            **Tilt Right** ➡️
+            
+            Tilt your head to the right (your right shoulder moves down) to advance to the next slide.
+            """)
+        
+        with demo_col2:
+            st.markdown("""
+            **Tilt Left** ⬅️
+            
+            Tilt your head to the left (your left shoulder moves down) to go to the previous slide.
+            """)
+            
+        with demo_col3:
+            st.markdown("""
+            **Double Nod** 👆👆
+            
+            Nod your head up and down twice quickly to close the presentation.
+            """)
+        
     # Footer
     st.markdown("---")
-    st.markdown("**Requirements:** Make sure you have a working webcam and PowerPoint installed on your system.")
+    st.markdown("""
+    **System Requirements:** 
+    - Working webcam with good resolution (720p or higher recommended)
+    - PowerPoint installed on your system
+    - Good lighting conditions for face detection
+    - MediaPipe and OpenCV libraries installed
+    """)
 
 if __name__ == "__main__":
     main()

@@ -9,7 +9,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 try:
     from gesture_control.powerpoint import minimize_console, initialize_powerpoint, bring_to_foreground, close_powerpoint, check_slideshow_active
     from gesture_control.webcam import initialize_webcam, read_frame, release_webcam
-    from gesture_control.gesture import initialize_hands, process_gestures
+    from gesture_control.gesture import initialize_face_mesh, process_gestures
     import mediapipe as mp
 except ImportError as e:
     print(f"Import Error: {e}")
@@ -17,7 +17,7 @@ except ImportError as e:
     sys.exit(1)
 
 def main():
-    print("Starting gesture control application...")
+    print("Starting head gesture control application...")
     
     # Get PowerPoint file path from arguments
     if len(sys.argv) < 2:
@@ -50,12 +50,12 @@ def main():
         print(f"Error initializing PowerPoint: {e}")
         sys.exit(1)
 
-    # Initialize webcam and MediaPipe
+    # Initialize webcam and MediaPipe Face Mesh
     try:
-        cap = initialize_webcam()
-        mp_hands, hands = initialize_hands()
+        cap = initialize_webcam(width=1280, height=720)  # Higher resolution for better face detection
+        mp_face_mesh, face_mesh = initialize_face_mesh()
         mp_drawing = mp.solutions.drawing_utils
-        print("Webcam and MediaPipe initialized successfully")
+        print("Webcam and MediaPipe Face Mesh initialized successfully")
     except Exception as e:
         print(f"Error initializing webcam/MediaPipe: {e}")
         # Clean up PowerPoint before exiting
@@ -69,8 +69,13 @@ def main():
     target_fps = 30
     frame_time = 1.0 / target_fps
 
-    print("Starting gesture detection loop...")
-    print("Use ESC key to exit or pinch gesture to close")
+    print("Starting head gesture detection loop...")
+    print("Head gesture controls:")
+    print("- Tilt head RIGHT: Next slide")
+    print("- Tilt head LEFT: Previous slide") 
+    print("- Double NOD: Close presentation")
+    print("- ESC key: Exit application")
+    print("Make sure your face is clearly visible in the camera!")
 
     try:
         while True:
@@ -81,10 +86,10 @@ def main():
                 print("Failed to read frame from webcam")
                 break
 
-            # Process gestures
+            # Process head gestures
             try:
-                frame, hand_detected, pinch_detected, delay = process_gestures(
-                    frame, hands, mp_drawing, mp_hands, powerpoint
+                frame, head_detected, exit_detected, delay = process_gestures(
+                    frame, face_mesh, mp_drawing, mp.solutions.face_mesh, powerpoint
                 )
             except Exception as e:
                 print(f"Error processing gestures: {e}")
@@ -92,12 +97,16 @@ def main():
                 continue
 
             # Show the frame
-            cv2.imshow('Hand Gesture Control', frame)
+            cv2.imshow('Head Gesture Control for PowerPoint', frame)
 
             # Check for exit conditions
             key = cv2.waitKey(1) & 0xFF
-            if pinch_detected:
-                print("Pinch gesture detected. Closing PowerPoint presentation.")
+            if key == 27:  # ESC key
+                print("ESC key pressed. Exiting...")
+                break
+                
+            if exit_detected:
+                print("Double nod gesture detected. Closing PowerPoint presentation.")
                 break
 
             # Control frame rate
@@ -117,7 +126,7 @@ def main():
             release_webcam(cap)
             cv2.destroyAllWindows()
             close_powerpoint(powerpoint, presentation)
-            hands.close()
+            face_mesh.close()
             print("Cleanup completed successfully")
         except Exception as e:
             print(f"Error during cleanup: {e}")

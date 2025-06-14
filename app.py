@@ -7,16 +7,16 @@ import tempfile
 def run_gesture_control(pptx_path):
     try:
         result = subprocess.run(
-            [sys.executable, "main.py", pptx_path],
+            [sys.executable, "gesture_control.py", pptx_path],
             check=True,
             capture_output=True,
             text=True
         )
         st.success("Gesture control started successfully!")
-        st.write("Output from main.py:")
+        st.write("Output from gesture_control.py:")
         st.code(result.stdout)
     except subprocess.CalledProcessError as e:
-        error_msg = f"Failed to run main.py: {e}\nOutput: {e.stderr}"
+        error_msg = f"Failed to run gesture_control.py: {e}\nOutput: {e.stderr}"
         st.error(error_msg)
 
 def main():

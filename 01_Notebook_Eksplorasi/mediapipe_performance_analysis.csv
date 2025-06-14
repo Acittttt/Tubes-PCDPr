@@ -1,0 +1,5 @@
+method,fps,detection_confidence,processing_time_ms,landmarks_count,accuracy_rate,use_case,latency_range,lighting_conditions,efficiency_score
+Head Gesture (Current Implementation),23.35866084825203,1.0,13.065611521402994,468,1.0,PowerPoint Control (Production),0-0ms,"['optimal', 'low_light', 'backlit', 'artificial', 'natural']",1.7877969821762894
+Body Pose Gestures,15.143799061254493,1.0,39.51240539550781,33,0.2,Body Control & Fitness,N/A,[],0.38326694894095714
+Enhanced Face Features,25.471373108929097,0.7,8.467609882354736,468,1.0,Emotion AI & Accessibility,N/A,[],3.008094782685693
+Holistic Integration,12.14561260765993,0.73,58.201141357421875,531,0.2,Multi-Modal Control,N/A,[],0.20868340936944713

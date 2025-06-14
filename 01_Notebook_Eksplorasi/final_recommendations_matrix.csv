@@ -1,0 +1,5 @@
+Method,Best Use Case,FPS Range,Complexity,Implementation Priority
+Head Gesture,Presentation,25-30,Low,High
+Body Pose,Fitness,20-25,Medium,Medium
+Enhanced Face,Accessibility,15-20,High,Medium
+Holistic,Gaming,10-15,Very High,Low

@@ -1,22 +1,22 @@
 # **Gesture Control for PowerPoint Presentations**
-### Control your PowerPoint slides with hand gestures! This project allows you to navigate through a PowerPoint presentation using intuitive hand gestures captured via webcam, powered by MediaPipe and a sleek Streamlit interface.
+ Control your PowerPoint slides with hand gestures! This project allows you to navigate through a PowerPoint presentation using intuitive hand gestures captured via webcam, powered by MediaPipe and a sleek Streamlit interface.
 
 # **Features**
-## - Hand Gesture Navigation: Use simple hand gestures to move to the next/previous slide or close the presentation.
-## - Streamlit Interface: Upload your PowerPoint file (.pptx) through an easy-to-use web interface.
-## - Real-Time Webcam Feedback: See your hand landmarks in real-time for precise gesture control.
-## - Optimized Performance: Reduced webcam resolution and frame rate control for smooth operation.
+  - Hand Gesture Navigation: Use simple hand gestures to move to the next/previous slide or close the presentation.
+  - Streamlit Interface: Upload your PowerPoint file (.pptx) through an easy-to-use web interface.
+  - Real-Time Webcam Feedback: See your hand landmarks in real-time for precise gesture control.
+  - Optimized Performance: Reduced webcam resolution and frame rate control for smooth operation.
 
 # **Prerequisites**
-## - Operating System: Windows (required for PowerPoint COM automation via pywin32).
-## - Microsoft PowerPoint: Installed on your system.
-## - Webcam: Any standard webcam compatible with OpenCV/Python.
-## - Python: Version 3.8 or higher.
+  - Operating System: Windows (required for PowerPoint COM automation via pywin32).
+  - Microsoft PowerPoint: Installed on your system.
+  - Webcam: Any standard webcam compatible with OpenCV/Python.
+  - Python: Version 3.8 or higher.
 
 # **Installation**
-## 1. Clone the Repository:
-### git clone https://github.com/Acittttt/Tubes-PCD.git 
-### cd GestureControlIPPT
+### 1. Clone the Repository:
+git clone https://github.com/Acittttt/Tubes-PCD.git 
+cd GestureControlIPPT
 
 ## 2. Create a Virtual Environment (optional but recommended):
 ### python -m venv venv

@@ -141,7 +141,7 @@ def main():
                 **Head Gesture Controls:**
                 - 🔄 **Tilt Head Right**: Next slide
                 - 🔄 **Tilt Head Left**: Previous slide  
-                - 👆👆 **Double Nod**: Close presentation
+                - 🔄🔄🔄 **Triple Tilt**: Close presentation
                 - **ESC Key**: Exit application
                 """)
             
@@ -151,7 +151,7 @@ def main():
                 - 💡 Ensure good lighting on your face
                 - 📹 Keep your face centered in the camera
                 - 🎯 Make clear, deliberate head movements
-                - ⏱️ Wait 1.5 seconds between gestures
+                - ⏱️ Wait 0.8 seconds between gestures
                 """)
 
             st.markdown("""
@@ -163,7 +163,7 @@ def main():
             4. Use head movements to control the presentation:
                - **Tilt your head to the RIGHT** → Next slide
                - **Tilt your head to the LEFT** → Previous slide
-               - **Nod your head twice quickly** → Close presentation
+               - **Tilt your head 3 times in the SAME direction quickly** → Close presentation
             5. The application will show your head position and detected gestures
             """)
             
@@ -172,8 +172,9 @@ def main():
             ⚠️ **Important:** 
             - Make sure your webcam is working properly
             - Ensure your face is clearly visible and well-lit
-            - Head gestures need to be deliberate (tilt at least 15 degrees)
-            - For double nod: Make two clear up-down head movements within 2 seconds
+            - Head gestures need to be deliberate (tilt at least 20 degrees for triple tilt, 15 degrees for navigation)
+            - For triple tilt: Make three clear head tilts in the same direction within 3 seconds
+            - Triple tilt requires more pronounced head movement than regular navigation tilts
             """)
 
             if st.button("🚀 Start Head Gesture Control", type="primary"):
@@ -220,9 +221,9 @@ def main():
             
         with demo_col3:
             st.markdown("""
-            **Double Nod** 👆👆
+            **Triple Tilt** 🔄🔄🔄
             
-            Nod your head up and down twice quickly to close the presentation.
+            Tilt your head three times quickly in the same direction (left or right) to close the presentation.
             """)
         
     # Footer

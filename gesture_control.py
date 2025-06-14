@@ -73,7 +73,7 @@ def main():
     print("Head gesture controls:")
     print("- Tilt head RIGHT: Next slide")
     print("- Tilt head LEFT: Previous slide") 
-    print("- Double NOD: Close presentation")
+    print("- Triple TILT (same direction): Close presentation")
     print("- ESC key: Exit application")
     print("Make sure your face is clearly visible in the camera!")
 
@@ -106,7 +106,7 @@ def main():
                 break
                 
             if exit_detected:
-                print("Double nod gesture detected. Closing PowerPoint presentation.")
+                print("Triple tilt gesture detected. Closing PowerPoint presentation.")
                 break
 
             # Control frame rate

@@ -1,6 +1,10 @@
 {
   "exploration_date": "2025-06-14",
-  "team": ["Rindi Indriani", "Rasyiid Raafi", "Annisa Dian Fadillah"],
+  "team": [
+    "Rindi Indriani",
+    "Rasyiid Raafi",
+    "Annisa Dian Fadillah"
+  ],
   "methods_tested": 4,
   "total_experiments": "5+ optimization configurations",
   "key_findings": [
@@ -29,7 +33,10 @@
       "Model Complexity": "Lite (0)",
       "Frame Skip": "1-2",
       "Expected FPS": "25-30",
-      "Use Cases": ["Presentation control", "Basic interaction"]
+      "Use Cases": [
+        "Presentation control",
+        "Basic interaction"
+      ]
     },
     "High Accuracy Applications": {
       "Method": "Enhanced Face Features",
@@ -37,7 +44,10 @@
       "Model Complexity": "Full (1)",
       "Frame Skip": "1",
       "Expected FPS": "15-20",
-      "Use Cases": ["Accessibility", "Medical monitoring"]
+      "Use Cases": [
+        "Accessibility",
+        "Medical monitoring"
+      ]
     },
     "Multi-Modal Applications": {
       "Method": "Holistic Integration",
@@ -45,7 +55,11 @@
       "Model Complexity": "Full (1)",
       "Frame Skip": "2-3",
       "Expected FPS": "10-15",
-      "Use Cases": ["Gaming", "VR", "Advanced interaction"]
+      "Use Cases": [
+        "Gaming",
+        "VR",
+        "Advanced interaction"
+      ]
     },
     "Fitness & Sports": {
       "Method": "Body Pose Gestures",
@@ -53,7 +67,10 @@
       "Model Complexity": "Heavy (2)",
       "Frame Skip": "1",
       "Expected FPS": "20-25",
-      "Use Cases": ["Exercise tracking", "Sports analysis"]
+      "Use Cases": [
+        "Exercise tracking",
+        "Sports analysis"
+      ]
     }
   },
   "implementation_roadmap": [
